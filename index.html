@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Iyiola Fawaz","alternateName":"Devfawzaany","jobTitle":"Software Developer","sameAs":["https://github.com/Devfawzaany","https://www.linkedin.com/in/iyiola-fawaz-656019377/"]}</script>
+<script>document.documentElement.classList.add("js")</script>
 <style>
 :root{
   --bg:#e8eaed; --surface:#f4f5f7; --ink:#15161a; --muted:#565a66; --line:#c9cdd4;
@@ -48,7 +49,7 @@ h2{font-size:clamp(2rem,4.6vw,3.25rem);font-weight:800;max-width:18ch}
 .btn.sm{min-height:40px;padding:.4rem 1rem;font-size:.9375rem}
 
 /* header */
-.site-header{position:sticky;top:0;z-index:50;background:rgba(232,234,237,.96);border-bottom:1px solid var(--line)}
+.site-header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;justify-content:space-between;min-height:4rem}
 .logo{font:800 1.25rem var(--display);letter-spacing:-.02em;text-decoration:none}
 .logo span{color:var(--violet)}
@@ -67,23 +68,26 @@ h2{font-size:clamp(2rem,4.6vw,3.25rem);font-weight:800;max-width:18ch}
 
 /* hero */
 .hero{padding:clamp(3rem,7vw,6rem) 0 clamp(3.5rem,8vw,6.5rem)}
-.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:clamp(2rem,6vw,5rem);align-items:center}
-.hero h1{font-size:clamp(2.6rem,7.4vw,5.6rem);font-weight:800;letter-spacing:-.035em;line-height:1}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem);align-items:center}
+.hero h1{font-size:clamp(2.6rem,5.6vw,4.25rem);font-weight:800;letter-spacing:-.035em;line-height:1}
 .hero .lead{margin-top:1.5rem;font-size:1.1875rem}
 .cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
 .socials{display:flex;gap:.5rem;margin-top:2rem}
 .socials a{display:grid;place-items:center;width:44px;height:44px;border:1.5px solid var(--line);border-radius:50%;transition:border-color .2s,color .2s}
 .socials a:hover{border-color:var(--violet);color:var(--violet)}
 .ic{width:20px;height:20px;fill:currentColor}
-.portrait{position:relative;aspect-ratio:4/5;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:grid;place-items:center}
-.portrait::before{content:"IF";font:800 5rem var(--display);color:var(--line)}
-.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portrait{position:relative;aspect-ratio:4/5;background:var(--bg);border-bottom:3px solid var(--violet);overflow:hidden;display:grid;place-items:center}
+.portrait.empty{background:var(--surface);border:1px solid var(--line);border-bottom:3px solid var(--violet)}
+.portrait.empty::before{content:"IF";font:800 5rem var(--display);color:var(--line)}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0;mix-blend-mode:multiply}
+.hero-grid>div:last-child{animation:slide-in-r .9s .3s cubic-bezier(.16,.8,.24,1) both}
+@keyframes slide-in-r{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
 .status{display:flex;align-items:center;gap:.6rem;margin-top:1rem;font-size:.9375rem;color:var(--muted)}
 .status::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--violet);flex:none}
 .hero-in>*{animation:slide-in .9s cubic-bezier(.16,.8,.24,1) both}
 .hero-in>*:nth-child(2){animation-delay:.12s}.hero-in>*:nth-child(3){animation-delay:.24s}.hero-in>*:nth-child(4){animation-delay:.36s}
 @keyframes slide-in{from{opacity:0;transform:translateX(-56px)}to{opacity:1;transform:none}}
-@media(max-width:860px){.hero-grid{grid-template-columns:1fr}.portrait{max-width:300px;order:-1;aspect-ratio:1}.portrait::before{font-size:4rem}}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}.portrait{max-width:400px}}
 
 /* about */
 .split{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,6vw,5rem)}
@@ -148,6 +152,10 @@ footer{border-top:1px solid var(--line);padding:3rem 0 2rem}
 .copy{margin-top:2rem;font-size:.9rem;color:var(--muted)}
 .socials.sm{margin-top:1rem}
 
+/* scroll reveal */
+.js [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,.8,.24,1),transform .7s cubic-bezier(.16,.8,.24,1);transition-delay:var(--d,0s)}
+.js [data-reveal].in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.js [data-reveal]{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -198,7 +206,7 @@ footer{border-top:1px solid var(--line);padding:3rem 0 2rem}
     <div>
       <div class="portrait">
         <!-- Put your photo at assets/profile.jpg (about 800x1000, under 150 KB). The initials show until it exists. -->
-        <img src="WhatsApp Image 2026-11-19 at 14.51.36.jpeg" alt="Portrait of Iyiola Fawaz" width="800" height="1000" fetchpriority="high" onerror="this.remove()">
+        <img src="assets/profile.jpg" alt="Portrait of Iyiola Fawaz" width="800" height="1000" fetchpriority="high" onerror="this.parentNode.classList.add('empty');this.remove()">
       </div>
       <p class="status">Open to front-end roles and freelance work</p>
     </div>
@@ -272,8 +280,8 @@ footer{border-top:1px solid var(--line);padding:3rem 0 2rem}
         <a href="https://wa.me/2347089505732" target="_blank" rel="noopener"><svg class="ic"><use href="#wa"/></svg><span>WhatsApp</span></a>
       </div>
     </div>
-    <!-- Replace YOUR_FORM_ID with your Formspree form ID (formspree.io, free plan works) -->
-    <form id="contact-form" action="https://formspree.io/f/mkjrpnv" method="POST">
+    <!-- Form messages are collected by Formspree (formspree.io) -->
+    <form id="contact-form" action="https://formspree.io/f/mkjrprnv" method="POST">
       <label>Name<input name="name" autocomplete="name" required></label>
       <label>Email<input type="email" name="email" autocomplete="email" required></label>
       <label>Message<textarea name="message" required></textarea></label>
@@ -310,8 +318,8 @@ const projects = [
   {
     title: "Blessed Fingers Naturals",
     description: "A brand website for a Nigerian natural skincare business. It presents the product range and story, and lets customers start an order with one tap on WhatsApp.",
-    tech: ["HTML5", "CSS3", "JavaScript","Responveness"],
-    image: "assets/project-blessed-fingers.webp.jpeg",
+    tech: ["HTML5", "CSS3", "JavaScript"],
+    image: "assets/project-blessed-fingers.webp",
     alt: "Home page of the Blessed Fingers Naturals website with a hand holding a herbal soap jar",
     live: "https://blesssed-fingers.vercel.app/",
     repo: "https://github.com/Devfawzaany"   // replace with this project's repository link
@@ -319,8 +327,8 @@ const projects = [
   {
     title: "Dreeso & Co",
     description: "A storefront for a luxury wristwatch and fabric brand, with a bold full-width hero, clear collections navigation and a floating WhatsApp button for quick enquiries.",
-    tech: ["HTML5", "CSS3", "JavaScript", "Responsiveness"],
-    image: "assets/project-dreeso-co.webp.jpeg",
+    tech: ["HTML5", "CSS3", "JavaScript"],
+    image: "assets/project-dreeso-co.webp",
     alt: "Home page of the Dreeso & Co website with a close-up of a silver chronograph watch",
     live: "https://dress-co-five.vercel.app/",
     repo: "https://github.com/Devfawzaany"   // replace with this project's repository link
@@ -374,7 +382,7 @@ document.querySelectorAll("main section[id]").forEach(s => io.observe(s));
 /* contact form */
 const form = document.getElementById("contact-form"), status = document.getElementById("form-status");
 form.addEventListener("submit", async e => {
-  if (form.action.includes("YOUR_FORM_ID")) {
+  if (form.action.includes("YOUR_FORM_ID")) { /* only runs if the form link is still a placeholder */
     e.preventDefault();
     status.className = "err";
     status.textContent = "The form is not connected yet. Please email me directly.";
@@ -392,6 +400,22 @@ form.addEventListener("submit", async e => {
     status.textContent = "Message not sent. Check your connection and try again, or email me directly.";
   }
 });
+
+/* scroll reveal: elements fade up as they enter the screen */
+const revealEls = document.querySelectorAll("#about h2,#about .facts,#about .prose p,#skills h2,#skills .lead,.skill,#projects h2,#projects .lead,.project,#services h2,.do li,#contact h2,#contact .lead,.contact-list,#contact form");
+const stagger = el => el.matches(".skill,.do li,.prose p");
+revealEls.forEach(el => {
+  el.dataset.reveal = "";
+  if (stagger(el)) el.style.setProperty("--d", Math.min([...el.parentNode.children].indexOf(el), 5) * 0.08 + "s");
+});
+if ("IntersectionObserver" in window) {
+  const rv = new IntersectionObserver((entries, o) => entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add("in"); o.unobserve(en.target); }
+  }), { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+  revealEls.forEach(el => rv.observe(el));
+} else {
+  revealEls.forEach(el => el.classList.add("in"));
+}
 
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
